@@ -8,8 +8,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pemrograman Mobile',
+      title: 'Login and Register Demo',
       theme: ThemeData(
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginRegisterScreen(),
@@ -18,8 +19,6 @@ class MyApp extends StatelessWidget {
 }
 
 class LoginRegisterScreen extends StatelessWidget {
-  get assets => null;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +28,7 @@ class LoginRegisterScreen extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.blue,
+              color: Color.fromARGB(255, 255, 0, 0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,7 +46,7 @@ class LoginRegisterScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-           flex: 4,
+            flex: 4,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: Column(
@@ -56,6 +55,7 @@ class LoginRegisterScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Email',
+                      prefixIcon: Icon(Icons.email),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -66,6 +66,7 @@ class LoginRegisterScreen extends StatelessWidget {
                     obscureText: true,
                     decoration: InputDecoration(
                       labelText: 'Password',
+                      prefixIcon: Icon(Icons.lock),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -75,9 +76,16 @@ class LoginRegisterScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       // Tambahkan logika untuk login di sini
+                      // Misalnya, jika login berhasil, navigasikan ke halaman dashboard
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashboardScreen()),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 15), backgroundColor: Color.fromARGB(255, 33, 243, 187),
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      backgroundColor: Color.fromARGB(255, 33, 243, 187),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
@@ -96,7 +104,8 @@ class LoginRegisterScreen extends StatelessWidget {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => RegisterScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => RegisterScreen()),
                           );
                         },
                         child: Text(
@@ -104,7 +113,7 @@ class LoginRegisterScreen extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.blue,
+                            color: const Color.fromARGB(255, 243, 33, 33),
                           ),
                         ),
                       ),
@@ -159,7 +168,8 @@ class RegisterScreen extends StatelessWidget {
                 // Tambahkan logika untuk registrasi di sini
               },
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(vertical: 15), backgroundColor: const Color.fromARGB(255, 33, 243, 184),
+                padding: EdgeInsets.symmetric(vertical: 15),
+                backgroundColor: const Color.fromARGB(255, 33, 243, 184),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -170,6 +180,23 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dashboard'),
+      ),
+      body: Center(
+        child: Text(
+          'Welcome to Dashboard!',
+          style: TextStyle(fontSize: 24),
         ),
       ),
     );
