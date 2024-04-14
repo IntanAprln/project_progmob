@@ -22,7 +22,6 @@ class LoginRegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var login;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
